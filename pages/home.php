@@ -1,4 +1,9 @@
 <?php
+include_once '../php/sql_connect.php';
+include_once '../php/sql_utils.php';
+include_once '../php/tools.php';
+
+
 $head = [
     "title" => "HoBo - Home",
     "description" => "Home page van HoBo",
@@ -6,6 +11,11 @@ $head = [
     "scripts" => []
 ];
 include_once '../php/head.php';
+
+
+
+$history = getUserHistory(10003); //TODO: change to actual user id
+
 ?>
 <nav class="navbar-2">
     <ul class="nav-links-2">
@@ -56,65 +66,32 @@ include_once '../php/head.php';
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
         <div class="card-container">
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00002.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00003.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h2 class="name">movie name</h2>
-                    <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                </div>
-            </div>
 
+        <?php
+
+            foreach ($history as $item) {
+                $imgPath = getImgPathFromID($item["SerieID"]);
+
+                $SerieTitel = $item["SerieTitel"];
+
+                $description = "description"
+
+                ?>
+
+                <div class="card">
+                    <img src="<?php echo $imgPath ?>" class="card-img" alt="<?php echo $SerieTitel . 'titel' ?>">
+                    <div class="card-body">
+                        <h2 class="name"><?php echo $SerieTitel ?></h2>
+                        <h6 class="des"><?php echo $description ?></h6>
+                    </div>
+                </div>
+
+            <?php
+            }
+            ?>
 
         </div>
+    </div>
         <div class="movies-list">
             <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
             <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
@@ -177,7 +154,11 @@ include_once '../php/head.php';
                 </div>
 
 
+
+
             </div>
+
+        </div>
             <div class="movies-list">
                 <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
                 <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
@@ -241,6 +222,8 @@ include_once '../php/head.php';
 
 
                 </div>
+            </div>
+
                 <div class="movies-list">
                     <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
                     <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
