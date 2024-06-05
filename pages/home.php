@@ -26,250 +26,104 @@ $history = getUserHistory(10003); //TODO: change to actual user id
 
 
 <main>
+
     <div class="carousel-container">
         <div class="carousel">
             <div class="slider">
                 <div class="slide-content">
-                    <h1 class="movie-title">Test</h1>
-                    <p class="movie-des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit saepe eius
-                        ratione nostrum mollitia explicabo quae nam pariatur. Sint, odit?</p>
+                    <h1 class="movie-title"></h1>
+                    <p class="movie-des"></p>
                 </div>
-                <img src="/img/seriesCards/00602.jpg" alt="">
+                <img src="<?php echo $imgPath; ?>" alt="">
             </div>
-
         </div>
     </div>
+
+
+
     <div class="movies-list">
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
         <div class="card-container">
 
         <?php
+foreach ($history as $item) {
+    $imgPath = getImgPathFromID($item["SerieID"]);
 
-            foreach ($history as $item) {
-                $imgPath = getImgPathFromID($item["SerieID"]);
+    $SerieTitel = $item["SerieTitel"];
+    $AflTitel = $item["AflTitel"];
+    $description = "description";
 
-                $SerieTitel = $item["SerieTitel"];
-                $AflTitel = $item["AflTitel"];
-                $AflTitel = explode(" ", $AflTitel)[1];
-
-                $description = "description";
-                //<h6 class="des"><?php echo $description ?></h6>
-
-                ?>
-
-                <div class="card">
-                    <img src="<?php echo $imgPath ?>" class="card-img" alt="<?php echo $SerieTitel . 'titel' ?>">
-                    <div class="card-body">
-                        <h2 class="name"><?php echo $AflTitel ?></h2>
-                    </div>
-                </div>
-
-            <?php
-            }
-            ?>
+    ?>
+    <div class="card">
+        <img src="<?php echo $imgPath; ?>" class="card-img" alt="<?php echo $SerieTitel . ' titel'; ?>">
+        <div class="card-body">
+            <h7 class="name"><?php echo $SerieTitel; ?></h7>
 
         </div>
     </div>
-        <div class="movies-list">
-            <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
-            <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
-            <div class="card-container">
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00002.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00003.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h2 class="name">movie name</h2>
-                        <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                    </div>
-                </div>
+    <?php
+}
+?>
 
+
+        </div>
+    </div>
+    
+
+
+ 
 
 
 
             </div>
 
         </div>
-            <div class="movies-list">
-                <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
-                <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
-                <div class="card-container">
+        <p class="recommend">First 10 Series</p>
+        <div class="movies-list">
+        <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
+        <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
+        <div class="card-container">
+            <?php if ($firstTenSeries): ?>
+                <?php foreach ($firstTenSeries as $serie): ?>
                     <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
+                        <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
+                            <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No series available.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    <p class="recommend">Mischien vind je dit leuk</p>
+    <div class="movies-list">
+       
+        <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
+        <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
+        <div class="card-container">
+            <?php if ($randomSeries): ?>
+                <?php foreach ($randomSeries as $serie): ?>
                     <div class="card">
-                        <img src="/img/seriesCards/00002.jpg" class="card-img" alt="">
+                        <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
+                            <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00003.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                        <div class="card-body">
-                            <h2 class="name">movie name</h2>
-                            <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-                <div class="movies-list">
-                    <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
-                    <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
-                    <div class="card-container">
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00002.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00003.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="/img/seriesCards/00001.jpg" class="card-img" alt="">
-                            <div class="card-body">
-                                <h2 class="name">movie name</h2>
-                                <h6 class="des">Lorem ipsum dolor sit amet consectetur.</h6>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No series available.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </main>
 
 </body>
+
+
+
 
 </html>
 
