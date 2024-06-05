@@ -427,3 +427,42 @@ img {
     background-color: #fff;
     color: #000;
 }
+/* CSS for video container */
+.video-container {
+    margin-bottom: 20px;
+}
+
+/* CSS for video player */
+.video-player {
+    width: 100%;
+    margin-left:50px;
+}
+
+/* CSS for series title */
+.series-title {
+    font-size: 24px;
+    color: white; /* Assuming white text on a black background */
+}
+
+/* CSS for seasons and episodes */
+.seasons-episodes {
+    margin-top: 20px;
+}
+
+.seasons-episodes-title {
+    font-size: 20px;
+    color: white; /* Assuming white text on a black background */
+}
+
+.seasons-episodes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.seasons-episodes-item {
+    margin-top: 15px;
+    font-size: 16px;
+    color: white; /* Assuming white text on a black background */
+}
+
+
