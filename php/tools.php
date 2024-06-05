@@ -19,24 +19,38 @@ function getUserHistory($userId) {
     return $result;
 }
 
+
+// Define function to get image path from SerieID
 function getImgPathFromID($id) {
     $len = strlen((string)$id);
-    return "/img/seriesCards/" . str_repeat("0", 5 - $len) . $id . ".jpg";
+    $imagePath = "/img/seriesCards/" . str_repeat("0", 5 - $len) . $id . ".jpg";
+    
+    // Check if the image file exists
+    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
+        return $imagePath;
+    } else {
+        // Return path to error image if no image found
+        return "/img/seriesCards/error.png";
+    }
 }
 
-try {
-    // SQL query to select the first 10 data
-    $sqlFirstTen = "SELECT * FROM serie LIMIT 10";
-    $stmtFirstTen = $conn->query($sqlFirstTen);
 
-    // Fetch first 10 results
-    $firstTenSeries = [];
-    if ($stmtFirstTen !== false && $stmtFirstTen->rowCount() > 0) {
-        while ($row = $stmtFirstTen->fetch(PDO::FETCH_ASSOC)) {
-            $firstTenSeries[] = $row;
+
+
+
+try {
+
+    $sqlTopSeries = "SELECT * FROM serie LIMIT 10";
+    $stmtTopSeries = $conn->query($sqlTopSeries);
+
+
+    $TopSeries = [];
+    if ($stmtTopSeries !== false && $stmtTopSeries->rowCount() > 0) {
+        while ($row = $stmtTopSeries->fetch(PDO::FETCH_ASSOC)) {
+            $TopSeries[] = $row;
         }
     } else {
-        $firstTenSeries = null;
+        $TopSeries = null;
     }
 
     // SQL query to select random data
@@ -55,4 +69,7 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+
+
 ?>
+

@@ -79,13 +79,13 @@ foreach ($history as $item) {
             </div>
 
         </div>
-        <p class="recommend">First 10 Series</p>
+        <p class="recommend">Top 10 Series</p>
         <div class="movies-list">
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
         <div class="card-container">
-            <?php if ($firstTenSeries): ?>
-                <?php foreach ($firstTenSeries as $serie): ?>
+            <?php if ($TopSeries): ?>
+                <?php foreach ($TopSeries as $serie): ?>
                     <div class="card">
                         <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
@@ -98,26 +98,29 @@ foreach ($history as $item) {
             <?php endif; ?>
         </div>
     </div>
-    <p class="recommend">Mischien vind je dit leuk</p>
+    <p class="recommend">Misschien vind je dit leuk</p>
     <div class="movies-list">
-       
-        <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
-        <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
-        <div class="card-container">
-            <?php if ($randomSeries): ?>
-                <?php foreach ($randomSeries as $serie): ?>
+    <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
+    <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
+    <div class="card-container">
+        <?php if ($randomSeries): ?>
+            <?php foreach ($randomSeries as $serie): ?>
+                <a href="serie.php?serieid=<?php echo $serie['SerieID']; ?>" class="serie-link">
                     <div class="card">
                         <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
                             <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No series available.</p>
-            <?php endif; ?>
-        </div>
+                </a>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No series available.</p>
+        <?php endif; ?>
     </div>
+</div>
+
+
 </main>
 
 </body>

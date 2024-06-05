@@ -34,17 +34,17 @@ include_once '../php/head.php';
         die("Connection failed: " . $e->getMessage());
     }
 
-    // Check if form is submitted and search input is not empty
+
     if (isset($_POST["submit"]) && !empty($_POST["search"])) {
-        // Sanitize user input to prevent SQL injection
+
         $search = htmlspecialchars($_POST["search"]);
 
-        // Using prepared statement to prevent SQL injection
+
         $stmt = $con->prepare("SELECT * FROM serie WHERE SerieTitel LIKE :search");
         $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
         $stmt->execute();
 
-        // Display search results
+
         if ($stmt->rowCount() > 0) {
             echo '<div class="card-container-2">';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
