@@ -27,36 +27,62 @@ $history = getUserHistory(10003); //TODO: change to actual user id
 
 <main>
 
+
 <div class="carousel-container">
     <div class="carousel">
         <div class="slider">
-            <div class="slide">
+            <div class="slide" style="background-image: url('../img/Marco-Polo-1280x720.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
-                    <h1 class="movie-title">Title 1</h1>
-                    <p class="movie-des">Description 1</p>
+                    <div class="gradient-overlay"></div>
+                    <div class="text-container">
+                        <div class="movie-title">Marco Polo</div>
+                        <div class="movie-des">Explore the captivating 13th-century world of 'Marco Polo' as he navigates Kublai Khan's court, showcasing the clash of civilizations and the spirit of exploration.</div>
+                    </div>
                 </div>
-                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
             </div>
-            <div class="slide">
+            <div class="slide" style="background-image: url('../img/p19516344_b_h8_aa.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
-                    <h1 class="movie-title">Title 2</h1>
-                    <p class="movie-des">Description 2</p>
+                    <div class="gradient-overlay"></div>
+                    <div class="text-container">
+                        <div class="movie-title"></div>
+                        <div class="movie-des">Movie Description 2</div>
+                    </div>
                 </div>
-                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
             </div>
-            <div class="slide">
+            <div class="slide" style="background-image: url('../img/ERpJ62MXsAYYKLa.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
-                    <h1 class="movie-title">Title 3</h1>
-                    <p class="movie-des">Description 3</p>
+                    <div class="gradient-overlay"></div>
+                    <div class="text-container">
+                        <div class="movie-title">Movie Title 3</div>
+                        <div class="movie-des">Movie Description 3</div>
+                    </div>
                 </div>
-                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
             </div>
-            <!-- Add more slides as needed -->
+            <div class="slide" style="background-image: url('../img/p16748119_b_h8_af.jpg'); background-size: cover; background-position: center;">
+                <div class="slide-content">
+                    <div class="gradient-overlay"></div>
+                    <div class="text-container">
+                        <div class="movie-title">Movie Title 4</div>
+                        <div class="movie-des">Movie Description 4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('../img/tvreview-jessicajones2-banner2.jpg'); background-size: cover; background-position: center;">
+                <div class="slide-content">
+                    <div class="gradient-overlay"></div>
+                    <div class="text-container">
+                        <div class="movie-title">Movie Title 5</div>
+                        <div class="movie-des">Movie Description 5</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="prev-btn">&lt;</button>
-        <button class="next-btn">&gt;</button>
+        <button class="prev-btn">&#9664;</button>
+        <button class="next-btn">&#9654;</button>
     </div>
 </div>
+
+
 
 
 
@@ -113,7 +139,7 @@ foreach ($history as $item) {
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No series available.</p>
+             <p>No series available.</p>
             <?php endif; ?>
         </div>
     </div>
@@ -153,28 +179,37 @@ foreach ($history as $item) {
 
 <script>
 
-    
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+
 let currentIndex = 0;
-const slides = document.querySelectorAll('.carousel .slider > *');
-const totalSlides = slides.length;
 
-function showSlide(index) {
-    const slideWidth = slides[0].clientWidth;
-    document.querySelector('.carousel .slider').style.transform = `translateX(-${index * slideWidth}px)`;
+function updateSlidePosition() {
+    const slideWidth = slides[currentIndex].clientWidth;
+    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 }
 
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    showSlide(currentIndex);
-}
+nextBtn.addEventListener('click', () => {
+    if (currentIndex < slides.length - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0;
+    }
+    updateSlidePosition();
+});
 
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    showSlide(currentIndex);
-}
+prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = slides.length - 1;
+    }
+    updateSlidePosition();
+});
 
-// Auto slide
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
+window.addEventListener('resize', updateSlidePosition);
 
 
 let cardContainers = [...document.querySelectorAll('.card-container')];
