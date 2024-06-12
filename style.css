@@ -11,21 +11,31 @@ body {
     font-family: roboto, sans-serif;
     display: flex;
 }
+
+main {
+    width: 85%;
+    margin: 0 auto;
+}
+
 img {
     height:70px;
-    width:70px;
 }
 
 .navbar {
-    width: 200px;
     margin-top:25vh;
     height: 50vh; 
-    padding: 20px;
     background: #0c111b;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+    position: fixed;
+}
+.navbar > .nav-links > * {
+    transition: 0.5s;
+}
+.navbar > .nav-links > *:hover {
+    transform: scale(1.1);
 }
 
 .brand-logo {
@@ -33,28 +43,38 @@ img {
 }
 
 .nav-links {
+    height: 100%;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
 }
 
 .nav-items a {
     text-decoration: none;
+    margin: 20px;
     text-transform: capitalize;
     color: #fff;
     opacity: 0.9;
 }
 
-
-
-
-
+.title{
+    color: #fff;
+    opacity: 0.9;
+    padding-left: 4%;
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 500;
+}
 
 .movies-list{
     width: 100%;
     height: 220px;
     position: relative;
     margin: 10px 0 20px;
-    margin-top:30vh;
-    margin-left:50px;
+    border: 1px solid #aaa;
 
 }
 
@@ -62,22 +82,28 @@ img {
     position: relative;
     width: 92%;
     padding-left: 10px;
-    height: 200px;
+    height: 220px;
     display: flex;
     margin: 0 auto;
     align-items: center;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
 }
 
+.card-container::-webkit-scrollbar{
+    display: none;
+}
 
 .card{
     position: relative;
     min-width: 150px;
-    width: 200px;
-    height: 300px;
-    border-radius: 5px;
+    width: 150px;
+    height: 200px;
     overflow: hidden;
     margin-right: 10px;
     transition: .5s;
+    cursor:pointer;
 }
 
 .card-img{
@@ -90,68 +116,39 @@ img {
     transform: scale(1.1);
 }
 
-.card:hover .card-body{
-    opacity: 1;
-}
-
-.card-body{
-    opacity: 0;
+.card-body{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
-    padding: 10px;
+    padding: 5px;
     transition: 0.5s;
 }
 
 .name{
     color: #fff;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     text-transform: capitalize;
     margin-top: 60%;
+    text-shadow: 5px 5px 10px #000;
+    text-align: end;
+    display:flex;
+    justify-content: center;
+
 }
 
 .des{
-    color: #fff;
-    opacity: 0.8;
+    color: bkack;
+    opacity: 1;
     margin: 5px 0;
     font-weight: 500;
     font-size: 12px;
-}
-
-.watchlist-btn{
-    position: relative;
-    width: 100%;
-    text-transform: capitalize;
-    background: none;
-    border: none;
-    font-weight: 500;
-    text-align: right;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 5px 0;
-    cursor: pointer;
-    padding: 10px 5px;
-    border-radius: 5px;
-}
-
-.watchlist-btn::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -5px;
-    height: 35px;
-    width: 35px;
-    background-image: url(images/add.png);
-    background-size: cover;
-    transform: scale(0.4);
-}
-
-.watchlist-btn:hover{
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
 }
 
 .pre-btn,
@@ -180,13 +177,292 @@ img {
 .nxt-btn img{
     width: 15px;
     height: 20px;
-    opacity: 0;
+}
+.carousel-container{
+    position: relative;
+    width:100%;
+    height: 350px;
+    padding: 20px 0;
+    overflow-x: hidden;
+    margin-top: 80px;
 }
 
-.pre-btn:hover img,
-.nxt-btn:hover img{
-    opacity: 1;
+.carousel{
+    display: flex;
+    width: 92%;
+    height: 100%;
+    position: relative;
+    margin: auto;
 }
 
+.slider{
+    flex: 0 0 auto;
+    margin-right: 30px;
+    position: relative;
+    background: rgba(0, 0, 0,0.5);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    transition: 1s;
+    overflow: hidden;
+}
+
+.slider img{
+    width: 70%;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+}
+
+.slide-content{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to right, #030b17 80%, #0c111b00);
+    color: #fff;
+}
+
+.movie-title{
+    padding-left: 50px;
+    text-transform: capitalize;
+    margin-top: 80px;
+}
+
+.movie-des{
+    width: 80%;
+    line-height: 30px;
+    padding-left: 50px;
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+.navbar-2{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 4%;
+    background: #0c111b;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo-2{
+    height: 70px;
+}
+
+.nav-links-2{
+    margin-top: 10px;
+    display: flex;
+    list-style:none;
+}
+
+.right-container{
+    display: block;
+    margin-left: auto;
+}
+
+
+
+.search-box{
+    border: none;
+    border: 1px solid #aaa;
+    border-radius: 20px; 
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color:#fff;
+    width: 500px;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    transition: .5s;
+    justify-content: center;
+    padding-left:10px;
+}
+.search-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 0;
+    width:100%;
+}
+
+.search-container {
+    display: flex;
+    padding: 100px;
+    margin: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Add this line */
+}
+
+.search-box-search {
+    border: none;
+    border: 1px solid #aaa;
+    border-radius: 20px; 
+    background: transparent;
+    outline: none;
+    height: 45px;
+    color: #fff;
+    width: 500px;
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 500;
+    transition: .5s;
+    padding-left: 10px;
+}
+
+
+.login-btn{
+    background: #1f80e0;
+    height: 30px;
+    padding: 0 20px;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+
+.search_bar{
+    margin-top: 10px;
+    display: flex;
+    list-style:none;
+}
+
+.recommend {
+    padding:2px;
+    margin-left:40px;
+    margin-right:40px;
+    color:lightgreen;
+    font-size: 20px;
+}
+
+.card-container-2 {
+    position: absolute;
+    width: 80%;
+    top: calc(75%); /* Position below the search container with some spacing */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Align items to start on new lines */
+    align-items: flex-start; /* Align items to start on new lines */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+.card-2 {
+    position: relative; /* Ensure positioning context for the name */
+    min-width: 150px;
+    width: 150px;
+    height: 200px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Add margin bottom for spacing between cards */
+    transition: .5s;
+    cursor: pointer;
+    display: flex; /* Add display flex to center name */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.card-img-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-2:hover {
+    transform: scale(1.1);
+}
+
+.card-body-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.name-2 {
+    position: absolute; /* Position the name absolutely */
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    bottom: 5px; /* Adjust as needed */
+    left: 0; /* Adjust as needed */
+    right: 0; /* Adjust as needed */
+    text-shadow: 5px 5px 10px #000;
+    text-align: center;
+}
+.search-btn {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+/* CSS for video container */
+.video-container {
+    margin-bottom: 20px;
+}
+
+/* CSS for video player */
+.video-player {
+    width: 100%;
+    margin-left:50px;
+}
+
+/* CSS for series title */
+.series-title {
+    font-size: 24px;
+    color: white; /* Assuming white text on a black background */
+}
+
+/* CSS for seasons and episodes */
+.seasons-episodes {
+    margin-top: 20px;
+}
+
+.seasons-episodes-title {
+    font-size: 20px;
+    color: white; /* Assuming white text on a black background */
+}
+
+.seasons-episodes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.seasons-episodes-item {
+    margin-top: 15px;
+    font-size: 16px;
+    color: white; /* Assuming white text on a black background */
+}
 
 
