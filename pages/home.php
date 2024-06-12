@@ -124,19 +124,21 @@ foreach ($history as $item) {
             </div>
 
         </div>
-        <p class="recommend">Top 10 Series</p>
+        <p class="recommend">Populaire series</p>
         <div class="movies-list">
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
         <div class="card-container">
             <?php if ($TopSeries): ?>
                 <?php foreach ($TopSeries as $serie): ?>
+                    <a href="serie.php?serieid=<?php echo $serie['SerieID']; ?>" class="serie-link">
                     <div class="card">
                         <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
                             <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
+                    </a>
                 <?php endforeach; ?>
             <?php else: ?>
              <p>No series available.</p>
