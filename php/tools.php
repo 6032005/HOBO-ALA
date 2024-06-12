@@ -10,7 +10,7 @@ function getUserHistory($userId) {
     ON aflevering.SeizID = seizoen.SeizoenID 
     INNER JOIN serie
     ON seizoen.SerieID = serie.SerieID
-    WHERE KlantID = ?
+    WHERE KlantID = ? AND serie.actief = 1
     ORDER BY serie.SerieID DESC LIMIT 10;";
 
     $params = [$userId];
@@ -19,30 +19,20 @@ function getUserHistory($userId) {
     return $result;
 }
 
-
-// Define function to get image path from SerieID
 function getImgPathFromID($id) {
     $len = strlen((string)$id);
     $imagePath = "/img/seriesCards/" . str_repeat("0", 5 - $len) . $id . ".jpg";
     
-    // Check if the image file exists
     if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagePath)) {
         return $imagePath;
     } else {
-        // Return path to error image if no image found
         return "/img/seriesCards/error.png";
     }
 }
 
-
-
-
-
 try {
-
-    $sqlTopSeries = "SELECT * FROM serie LIMIT 10";
+    $sqlTopSeries = "SELECT * FROM serie WHERE actief = 1 LIMIT 10";
     $stmtTopSeries = $conn->query($sqlTopSeries);
-
 
     $TopSeries = [];
     if ($stmtTopSeries !== false && $stmtTopSeries->rowCount() > 0) {
@@ -53,11 +43,9 @@ try {
         $TopSeries = null;
     }
 
-    // SQL query to select random data
-    $sqlRandomTen = "SELECT * FROM serie ORDER BY RAND() LIMIT 10";
+    $sqlRandomTen = "SELECT * FROM serie WHERE actief = 1 ORDER BY RAND() LIMIT 10";
     $stmtRandomTen = $conn->query($sqlRandomTen);
 
-    // Fetch random 10 results
     $randomSeries = [];
     if ($stmtRandomTen !== false && $stmtRandomTen->rowCount() > 0) {
         while ($row = $stmtRandomTen->fetch(PDO::FETCH_ASSOC)) {
@@ -66,10 +54,19 @@ try {
     } else {
         $randomSeries = null;
     }
+
+    $sqlCarouselFive = "SELECT * FROM serie WHERE actief = 1 LIMIT 5";
+    $stmtCarouselFive = $conn->query($sqlCarouselFive);
+
+    $CarouselFive = [];
+    if ($stmtCarouselFive !== false && $stmtCarouselFive->rowCount() > 0) {
+        while ($row = $stmtCarouselFive->fetch(PDO::FETCH_ASSOC)) {
+            $CarouselFive[] = $row;
+        }
+    } else {
+        $CarouselFive = null;
+    }
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-
-
 ?>
-

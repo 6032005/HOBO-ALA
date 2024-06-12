@@ -27,17 +27,36 @@ $history = getUserHistory(10003); //TODO: change to actual user id
 
 <main>
 
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="slider">
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="slider">
+            <div class="slide">
                 <div class="slide-content">
-                    <h1 class="movie-title"></h1>
-                    <p class="movie-des"></p>
+                    <h1 class="movie-title">Title 1</h1>
+                    <p class="movie-des">Description 1</p>
                 </div>
-                <img src="<?php echo $imgPath; ?>" alt="">
+                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
             </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="movie-title">Title 2</h1>
+                    <p class="movie-des">Description 2</p>
+                </div>
+                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="movie-title">Title 3</h1>
+                    <p class="movie-des">Description 3</p>
+                </div>
+                <img class="carousel-img" src="/img/profile-icon-9.png" alt="">
+            </div>
+            <!-- Add more slides as needed -->
         </div>
+        <button class="prev-btn">&lt;</button>
+        <button class="next-btn">&gt;</button>
     </div>
+</div>
 
 
 
@@ -134,7 +153,31 @@ foreach ($history as $item) {
 
 <script>
 
-    let cardContainers = [...document.querySelectorAll('.card-container')];
+    
+let currentIndex = 0;
+const slides = document.querySelectorAll('.carousel .slider > *');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    const slideWidth = slides[0].clientWidth;
+    document.querySelector('.carousel .slider').style.transform = `translateX(-${index * slideWidth}px)`;
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+}
+
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+}
+
+// Auto slide
+setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+
+let cardContainers = [...document.querySelectorAll('.card-container')];
     let preBtns = [...document.querySelectorAll('.pre-btn')];
     let nxtBtns = [...document.querySelectorAll('.nxt-btn')];
 
@@ -150,4 +193,7 @@ foreach ($history as $item) {
             item.scrollLeft -= containerWidth + 200;
         })
     })
+    
+    
 </script>
+<script src="scripts/app.js"></script>
