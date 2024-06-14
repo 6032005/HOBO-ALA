@@ -27,17 +27,13 @@ $history = getUserHistory(10003); //TODO: change to actual user id
 
 <main>
 
-
+<section class="boxxed">
 <div class="carousel-container">
     <div class="carousel">
         <div class="slider">
             <div class="slide" style="background-image: url('../img/Marco-Polo-1280x720.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
                     <div class="gradient-overlay"></div>
-                    <div class="text-container">
-                        <div class="movie-title">Marco Polo</div>
-                        <div class="movie-des">Explore the captivating 13th-century world of 'Marco Polo' as he navigates Kublai Khan's court, showcasing the clash of civilizations and the spirit of exploration.</div>
-                    </div>
                 </div>
             </div>
             <div class="slide" style="background-image: url('../img/p19516344_b_h8_aa.jpg'); background-size: cover; background-position: center;">
@@ -45,25 +41,21 @@ $history = getUserHistory(10003); //TODO: change to actual user id
                     <div class="gradient-overlay"></div>
                     <div class="text-container">
                         <div class="movie-title"></div>
-                        <div class="movie-des">Movie Description 2</div>
+                        <div class="movie-des"></div>
                     </div>
                 </div>
             </div>
             <div class="slide" style="background-image: url('../img/ERpJ62MXsAYYKLa.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
                     <div class="gradient-overlay"></div>
-                    <div class="text-container">
-                        <div class="movie-title">Movie Title 3</div>
-                        <div class="movie-des">Movie Description 3</div>
-                    </div>
                 </div>
             </div>
             <div class="slide" style="background-image: url('../img/p16748119_b_h8_af.jpg'); background-size: cover; background-position: center;">
                 <div class="slide-content">
                     <div class="gradient-overlay"></div>
                     <div class="text-container">
-                        <div class="movie-title">Movie Title 4</div>
-                        <div class="movie-des">Movie Description 4</div>
+                        <div class="movie-title">1</div>
+                        <div class="movie-des">1</div>
                     </div>
                 </div>
             </div>
@@ -71,8 +63,6 @@ $history = getUserHistory(10003); //TODO: change to actual user id
                 <div class="slide-content">
                     <div class="gradient-overlay"></div>
                     <div class="text-container">
-                        <div class="movie-title">Movie Title 5</div>
-                        <div class="movie-des">Movie Description 5</div>
                     </div>
                 </div>
             </div>
@@ -81,7 +71,7 @@ $history = getUserHistory(10003); //TODO: change to actual user id
         <button class="next-btn">&#9654;</button>
     </div>
 </div>
-
+</section>
 
 
 
@@ -135,7 +125,6 @@ foreach ($history as $item) {
                     <div class="card">
                         <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
-                            <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
                     </a>
@@ -156,7 +145,6 @@ foreach ($history as $item) {
                     <div class="card">
                         <img src="<?php echo getImgPathFromID($serie['SerieID']); ?>" class="card-img" alt="">
                         <div class="card-body">
-                            <h2 class="name"><?php echo htmlspecialchars($serie['SerieTitel']); ?></h2>
                         </div>
                     </div>
                 </a>
@@ -166,6 +154,36 @@ foreach ($history as $item) {
         <?php endif; ?>
     </div>
 </div>
+<div class="genre-container">
+        <?php
+        $genres = ['Comedy', 'Drama', 'Crime'];
+
+        foreach ($genres as $genre):
+            $seriesByGenres = getSeriesBySpecificGenre($genre);
+        ?>
+            <h2 class="recommend"> <?php echo htmlspecialchars($genre); ?></h2>
+            <div class="movies-list">
+                <button class="pre-btn"><img src="/img/pre.png" alt="Previous"></button>
+                <button class="nxt-btn"><img src="/img/nxt.png" alt="Next"></button>
+                <div class="card-container">
+                    <?php if (!empty($seriesByGenres)): ?>
+                        <?php foreach ($seriesByGenres as $series): ?>
+                            <a href="serie.php?serieid=<?php echo $series['SerieID']; ?>" class="serie-link">
+                                <div class="card">
+                                    <img src="<?php echo getImgPathFromID($series['SerieID']); ?>" class="card-img" alt="<?php echo htmlspecialchars($series['SerieTitel']); ?>">
+                                    <div class="card-body">
+                                    </div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="no-series">No series found in this genre.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
 
 
 </main>

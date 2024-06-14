@@ -12,6 +12,7 @@ a, p, h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 #login-cr4 form, #login-cr5 form {
+  min-width: 300px;
   padding: 20px 10px 20px 10px;
   box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.7);
   margin-top: 12vh;
@@ -81,4 +82,8 @@ a, p, h1, h2, h3, h4, h5, h6 {
 #dashboard-cr6 section:nth-child(1) {
   display: flex;
   align-items: center;
+}
+
+#img-dash {
+  width: 100px;
 }/*# sourceMappingURL=style.css.map */

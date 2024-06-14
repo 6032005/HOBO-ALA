@@ -11,7 +11,6 @@ $head = [
 ];
 include_once '../php/head.php';
 
-
 include_once '../php/sql_connect.php';
 include_once '../php/sql_utils.php';
 include_once '../php/tools.php';
@@ -26,7 +25,7 @@ function fetchSeriesData($serieid, $conn) {
 }
 
 function fetchSeasonsAndEpisodes($serieid, $conn) {
-    $stmt = $conn->prepare("SELECT seizoen.SeizoenID, aflevering.AflTitel 
+    $stmt = $conn->prepare("SELECT seizoen.SeizoenID, aflevering.AflTitel, aflevering.Duur
                             FROM seizoen 
                             INNER JOIN aflevering ON seizoen.SeizoenID = aflevering.SeizID 
                             INNER JOIN serie ON seizoen.SerieID = serie.SerieID
@@ -35,7 +34,16 @@ function fetchSeasonsAndEpisodes($serieid, $conn) {
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    return $result;
+    $seasons = [];
+    foreach ($result as $row) {
+        $seasonID = $row['SeizoenID'];
+        $seasons[$seasonID][] = [
+            'AflTitel' => $row['AflTitel'],
+            'Duur' => $row['Duur']
+        ];
+    }
+
+    return $seasons;
 }
 
 if(isset($_GET['serieid'])) {
@@ -45,40 +53,67 @@ if(isset($_GET['serieid'])) {
 
     if($seriesData) {
         $imgPath = getImgPathFromID($serieid);
-
-        // Display video
-   ?>
-
-
-<div class="video-container">
-    <video class="video-player" width="640" height="480" autoplay muted controls>
-        <source src="../img/vid/test.mov" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-
-<div class="series-body">
-    <h2 class="series-title"><?php echo htmlspecialchars($seriesData); ?></h2>
-</div>
-</div>
-</div>
-
-   <?php
-        // Display seasons and episodes
-        $seasonsAndEpisodes = fetchSeasonsAndEpisodes($serieid, $conn);
-
-        if($seasonsAndEpisodes) {
-            echo "<div class='seasons-episodes'>";
-            echo "<h2 class='seasons-episodes-title'>Seasons and Episodes:</h2>";
-            echo "<ul class='seasons-episodes-list'>";
-            foreach ($seasonsAndEpisodes as $row) {
-                echo "<li class='seasons-episodes-item'>Season " . htmlspecialchars($row['SeizoenID']) . ": " . htmlspecialchars($row['AflTitel']) . "</li>";
-            }
-            echo "</ul>";
-            echo "</div>";
-        } else {
-            echo "<p class='no-seasons-episodes'>No seasons and episodes found.</p>";
-        }
-    } 
-} 
 ?>
+
+<div class="series-content-container">
+    <div class="series-container">
+        <div class="video-column">
+            <div class="video-wrapper">
+                <video class="video-player" width="800" height="450" autoplay muted controls>
+                    <source src="../img/vid/test.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <div class="info-column">
+            <div class="series-body">
+                <h2 class="series-title"><?php echo htmlspecialchars($seriesData); ?></h2>
+
+                <?php
+                $seasonsAndEpisodes = fetchSeasonsAndEpisodes($serieid, $conn);
+
+                if ($seasonsAndEpisodes) {
+                    echo "<div class='seasons-episodes'>";
+                    echo "    <h2 class='seasons-episodes-title'>Seasons and Episodes:</h2>";
+                    echo "    <div class='seasons-dropdown'>";
+                    echo "        <select id='season-select' onchange='showEpisodes(this.value)'>";
+                    echo "            <option value='' selected disabled>Select a Season</option>";
+                    foreach ($seasonsAndEpisodes as $seasonID => $episodes) {
+                        echo "            <option value='" . htmlspecialchars($seasonID) . "'>Season " . htmlspecialchars($seasonID) . "</option>";
+                    }
+                    echo "        </select>";
+                    echo "    </div>";
+                    echo "    <div id='episodes-container'></div>"; 
+                    echo "</div>";
+                } else {
+                    echo "<p class='no-seasons-episodes'>No seasons and episodes found.</p>";
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showEpisodes(seasonID) {
+    var episodesContainer = document.getElementById('episodes-container');
+    episodesContainer.innerHTML = '';
+    <?php foreach ($seasonsAndEpisodes as $seasonID => $episodes) : ?>
+        if (seasonID == '<?php echo $seasonID; ?>') {
+            <?php foreach ($episodes as $episode) : ?>
+                episodesContainer.innerHTML += '<div class="seasons-episodes-item">' +
+                                               '    <span class="episode-title"><?php echo htmlspecialchars($episode['AflTitel']); ?></span>' +
+                                               '    <span class="episode-length"><?php echo htmlspecialchars($episode['Duur']); ?></span>' +
+                                               '</div>';
+            <?php endforeach; ?>
+        }
+    <?php endforeach; ?>
+}
+</script>
+
+<?php
+    }
+}
+?>
+</body>
