@@ -1,0 +1,97 @@
+#login-cr4, #login-cr5, #dashboard-cr6{
+    background: hsla(232, 12%, 25%, 1);
+    background: radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#373946", endColorstr="#23252D", GradientType=1 );
+    }
+
+input::placeholder{
+        color: white;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+.login-input {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    color: white;
+    transition: border 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.login-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+}
+
+.login-input:focus::placeholder {
+    opacity: 0; /* Fade out the placeholder */
+}
+
+.login-button {
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: rgb(55, 83, 123);
+}
+
+.link a {
+    color: white;
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Starts from 50px below the viewport */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Ends at its original position */
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out;
+}
+
+#img-dash{
+    width: 150px;
+    padding-right: 50px;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#main > article:nth-child(1){
+    display: flex;
+    padding: 100px 100px 0px 100px;
+
+    flex-direction: row;
+    align-items: center;
+    font-size: 40px;
+}
+#main > article:nth-child(2){
+    padding-left: 100px;
+}
+#main > article:nth-child(2) > p:nth-child(1){
+    font-size: 30px;
+}
+
+#main > article:nth-child(2) > p{
+    padding-bottom: 15px;
+}
