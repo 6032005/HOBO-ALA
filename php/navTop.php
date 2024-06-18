@@ -22,6 +22,7 @@
             $username = $_SESSION['username'];
             echo '<p> ' . htmlspecialchars($username) . '</p>';
             
+            
         } else {
             echo '
                 <button class="login-btn"><a href="login.php">Login</a></button>

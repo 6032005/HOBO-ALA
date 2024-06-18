@@ -22,3 +22,7 @@ function fetchSql($sql, $params = []) {
 function fetchSqlAll($sql, $params = []) {
     return runSql($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+// utils.php
+

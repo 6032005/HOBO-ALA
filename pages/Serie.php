@@ -80,8 +80,9 @@ if(isset($_GET['serieid'])) {
             <div class="series-body">
                 <h2 class="series-title"><?php echo htmlspecialchars($seriesData); ?></h2>
                 <h3>Meer informatie over serie</h3>
+                <p class="info-serie-klein">Explore captivating stories filled with suspense, drama, and unexpected twists</p>
                 <?php if ($imdbLink) : ?>
-                    <p><a href="<?php echo htmlspecialchars($imdbLink); ?>" target="_blank">IMDb Page</a></p>
+                    <p><a class="imdblink-serie" href="<?php echo htmlspecialchars($imdbLink); ?>" target="_blank">IMDb Page</a></p>
                 <?php else : ?>
                     <p>No IMDb link available.</p>
                 <?php endif; ?>
