@@ -3,8 +3,7 @@ include_once 'sql_connect.php';
 include_once 'sql_utils.php';
 
 function getUserHistory($userId) {
-    global $conn; // Assuming $conn is your database connection object from sql_connect.php
-
+    global $conn; 
     $sql = "SELECT * FROM stream 
     INNER JOIN aflevering 
     ON stream.AflID = aflevering.afleveringID 
@@ -13,7 +12,7 @@ function getUserHistory($userId) {
     INNER JOIN serie
     ON seizoen.SerieID = serie.SerieID
     WHERE KlantID = ? AND serie.actief = 1
-    ORDER BY serie.SerieID DESC LIMIT 10;";
+    ORDER BY serie.SerieID DESC;";
 
     $params = [$userId];
     $result = fetchSqlAll($sql, $params);
@@ -33,7 +32,7 @@ function getImgPathFromID($id) {
 }
 
 try {
-    // Fetch top series
+
     $sqlTopSeries = "SELECT * FROM serie WHERE actief = 1 LIMIT 10";
     $stmtTopSeries = $conn->query($sqlTopSeries);
 
@@ -46,7 +45,7 @@ try {
         $TopSeries = null;
     }
 
-    // Fetch random ten series
+
     $sqlRandomTen = "SELECT * FROM serie WHERE actief = 1 ORDER BY RAND() LIMIT 10";
     $stmtRandomTen = $conn->query($sqlRandomTen);
 
@@ -59,7 +58,7 @@ try {
         $randomSeries = null;
     }
 
-    // Fetch carousel five series
+
     $sqlCarouselFive = "SELECT * FROM serie WHERE actief = 1 LIMIT 5";
     $stmtCarouselFive = $conn->query($sqlCarouselFive);
 

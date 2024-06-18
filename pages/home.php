@@ -12,70 +12,57 @@ $head = [
 ];
 include_once '../php/head.php';
 
-
-
-$history = getUserHistory(10003); //TODO: change to actual user id
-
+$history = getUserHistory(10003); 
 ?>
-
 <body>
 
 <?php include_once '../php/navTop.php'; ?>
 <?php include_once '../php/navLeft.php'; ?>
-
-
-
 <main>
-
 <section class="boxxed">
-<div class="carousel-container">
-    <div class="carousel">
-        <div class="slider">
-            <div class="slide" style="background-image: url('../img/Marco-Polo-1280x720.jpg'); background-size: cover; background-position: center;">
-                <div class="slide-content">
-                    <div class="gradient-overlay"></div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('../img/p19516344_b_h8_aa.jpg'); background-size: cover; background-position: center;">
-                <div class="slide-content">
-                    <div class="gradient-overlay"></div>
-                    <div class="text-container">
-                        <div class="movie-title"></div>
-                        <div class="movie-des"></div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="slider">
+                <a href="http://127.0.0.1:8000/pages/serie.php?serieid=213" class="slide" style="background-image: url('../img/Marco-Polo-1280x720.jpg'); background-size: cover; background-position: center;">
+                    <div class="slide-content">
+                        <div class="gradient-overlay"></div>
                     </div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('../img/ERpJ62MXsAYYKLa.jpg'); background-size: cover; background-position: center;">
-                <div class="slide-content">
-                    <div class="gradient-overlay"></div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('../img/p16748119_b_h8_af.jpg'); background-size: cover; background-position: center;">
-                <div class="slide-content">
-                    <div class="gradient-overlay"></div>
-                    <div class="text-container">
-                        <div class="movie-title">1</div>
-                        <div class="movie-des">1</div>
+                </a>
+                <a href="http://127.0.0.1:8000/pages/serie.php?serieid=493" class="slide" style="background-image: url('../img/bosch-banner-poster.jpeg.webp'); background-size: cover; background-position: center;">
+                    <div class="slide-content">
+                        <div class="gradient-overlay"></div>
+                        <div class="text-container">
+                            <div class="movie-title"></div>
+                            <div class="movie-des"></div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('../img/tvreview-jessicajones2-banner2.jpg'); background-size: cover; background-position: center;">
-                <div class="slide-content">
-                    <div class="gradient-overlay"></div>
-                    <div class="text-container">
+                </a>
+                <a href="http://127.0.0.1:8000/pages/serie.php?serieid=127" class="slide" style="background-image: url('../img/ERpJ62MXsAYYKLa.jpg'); background-size: cover; background-position: center;">
+                    <div class="slide-content">
+                        <div class="gradient-overlay"></div>
                     </div>
-                </div>
+                </a>
+                <a href="http://127.0.0.1:8000/pages/serie.php?serieid=44" class="slide" style="background-image: url('../img/p16748119_b_h8_af.jpg'); background-size: cover; background-position: center;">
+                    <div class="slide-content">
+                        <div class="gradient-overlay"></div>
+                        <div class="text-container">
+                            <div class="movie-title">1</div>
+                            <div class="movie-des">1</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://127.0.0.1:8000/pages/serie.php?serieid=218" class="slide" style="background-image: url('../img/tvreview-jessicajones2-banner2.jpg'); background-size: cover; background-position: center;">
+                    <div class="slide-content">
+                        <div class="gradient-overlay"></div>
+                        <div class="text-container"></div>
+                    </div>
+                </a>
             </div>
+            <button class="prev-btn">&#9664;</button>
+            <button class="next-btn">&#9654;</button>
         </div>
-        <button class="prev-btn">&#9664;</button>
-        <button class="next-btn">&#9654;</button>
     </div>
-</div>
 </section>
-
-
-
-
     <div class="movies-list">
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
@@ -93,24 +80,14 @@ foreach ($history as $item) {
     <div class="card">
         <img src="<?php echo $imgPath; ?>" class="card-img" alt="<?php echo $SerieTitel . ' titel'; ?>">
         <div class="card-body">
-            <h7 class="name"><?php echo $SerieTitel; ?></h7>
 
         </div>
     </div>
     <?php
 }
 ?>
-
-
         </div>
     </div>
-    
-
-
- 
-
-
-
             </div>
 
         </div>
@@ -183,22 +160,10 @@ foreach ($history as $item) {
             </div>
         <?php endforeach; ?>
     </div>
-
-
-
 </main>
-
 </body>
-
-
-
-
 </html>
-
-
-
 <script>
-
 const slider = document.querySelector('.slider');
 const slides = document.querySelectorAll('.slide');
 const prevBtn = document.querySelector('.prev-btn');
@@ -248,7 +213,6 @@ let cardContainers = [...document.querySelectorAll('.card-container')];
             item.scrollLeft -= containerWidth + 200;
         })
     })
-    
-    
+
 </script>
-<script src="scripts/app.js"></script>
+

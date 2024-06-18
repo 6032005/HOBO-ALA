@@ -10,7 +10,6 @@ $head = [
     "scripts" => []
 ];
 include_once '../php/head.php';
-
 ?>
 
 <body>
@@ -26,7 +25,6 @@ include_once '../php/head.php';
     </div>
 
     <?php
-    // Establishing database connection
     try {
         $con = new PDO("mysql:host=localhost;dbname=HoBo", 'root', 'root');
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -34,33 +32,32 @@ include_once '../php/head.php';
         die("Connection failed: " . $e->getMessage());
     }
 
-
     if (isset($_POST["submit"]) && !empty($_POST["search"])) {
-
         $search = htmlspecialchars($_POST["search"]);
 
+        $stmt = $con->prepare("SELECT * FROM serie WHERE SerieTitel LIKE :search AND actief = 1");
 
-        $stmt = $con->prepare("SELECT * FROM serie WHERE SerieTitel LIKE :search");
         $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
         $stmt->execute();
 
-
         if ($stmt->rowCount() > 0) {
             echo '<div class="card-container-2">';
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $imgPath = getImgPathFromID($row['SerieID']);
-                echo '<div class="card-2">';
-                echo '<img src="' . $imgPath . '" class="card-img-2" alt="">';
-                echo '<div class="card-body-2">';
-                echo '<h2 class="name-2">' . htmlspecialchars($row['SerieTitel']) . '</h2>';
+            while ($serie = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $imgPath = getImgPathFromID($serie['SerieID']);
+                $seriePageUrl = 'serie.php?serieid=' . htmlspecialchars($serie['SerieID']);
+
+                echo '<a href="' . $seriePageUrl . '" class="serie-link">';
+                echo '<div class="card">';
+                echo '<img src="' . $imgPath . '" class="card-img" alt="">';
+                echo '<div class="card-body">';
                 echo '</div>';
                 echo '</div>';
+                echo '</a>';
             }
             echo '</div>';
         } else {
             echo '<p class="no-results">No series found</p>';
         }
-    } elseif (!isset($_POST["submit"])) {
     }
     ?>
 

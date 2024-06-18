@@ -24,6 +24,15 @@ function fetchSeriesData($serieid, $conn) {
     return $result ? $result['SerieTitel'] : null;
 }
 
+function fetchIMDBLink($serieid, $conn) {
+    $stmt = $conn->prepare("SELECT IMDBLink FROM serie WHERE SerieID = :serieid");
+    $stmt->bindValue(':serieid', $serieid, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result ? $result['IMDBLink'] : null;
+}
+
 function fetchSeasonsAndEpisodes($serieid, $conn) {
     $stmt = $conn->prepare("SELECT seizoen.SeizoenID, aflevering.AflTitel, aflevering.Duur
                             FROM seizoen 
@@ -50,6 +59,7 @@ if(isset($_GET['serieid'])) {
     $serieid = $_GET['serieid'];
 
     $seriesData = fetchSeriesData($serieid, $conn);
+    $imdbLink = fetchIMDBLink($serieid, $conn);
 
     if($seriesData) {
         $imgPath = getImgPathFromID($serieid);
@@ -69,6 +79,11 @@ if(isset($_GET['serieid'])) {
         <div class="info-column">
             <div class="series-body">
                 <h2 class="series-title"><?php echo htmlspecialchars($seriesData); ?></h2>
+                <?php if ($imdbLink) : ?>
+                    <p><a href="<?php echo htmlspecialchars($imdbLink); ?>" target="_blank">IMDb Page</a></p>
+                <?php else : ?>
+                    <p>No IMDb link available.</p>
+                <?php endif; ?>
 
                 <?php
                 $seasonsAndEpisodes = fetchSeasonsAndEpisodes($serieid, $conn);
@@ -99,6 +114,7 @@ if(isset($_GET['serieid'])) {
 function showEpisodes(seasonID) {
     var episodesContainer = document.getElementById('episodes-container');
     episodesContainer.innerHTML = '';
+
     <?php foreach ($seasonsAndEpisodes as $seasonID => $episodes) : ?>
         if (seasonID == '<?php echo $seasonID; ?>') {
             <?php foreach ($episodes as $episode) : ?>
@@ -117,3 +133,4 @@ function showEpisodes(seasonID) {
 }
 ?>
 </body>
+</html>

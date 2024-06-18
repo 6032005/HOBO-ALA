@@ -17,8 +17,8 @@ function prevSlide() {
     showSlide(currentIndex);
 }
 
-// Auto slide
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+setInterval(nextSlide, 5000); 
 
 
 let cardContainers = [...document.querySelectorAll('.card-container')];

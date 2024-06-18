@@ -1,8 +1,5 @@
 #login-cr4, #login-cr5, #dashboard-cr6{
-    background: hsla(232, 12%, 25%, 1);
-    background: radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
-    background: -moz-radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
-    background: -webkit-radial-gradient(circle, hsla(232, 12%, 25%, 1) 2%, hsla(228, 13%, 16%, 1) 60%, hsla(228, 12%, 8%, 1) 97%, hsla(0, 0%, 0%, 1) 100%);
+    background: #444444;
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#373946", endColorstr="#23252D", GradientType=1 );
     }
 
@@ -23,11 +20,11 @@ input::placeholder{
 
 .login-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+    transition: opacity 0.5s ease-in-out; 
 }
 
 .login-input:focus::placeholder {
-    opacity: 0; /* Fade out the placeholder */
+    opacity: 0; 
 }
 
 .login-button {
@@ -54,11 +51,11 @@ input::placeholder{
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(50px); /* Starts from 50px below the viewport */
+        transform: translateY(50px); 
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Ends at its original position */
+        transform: translateY(0); 
     }
 }
 
