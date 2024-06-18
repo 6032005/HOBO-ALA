@@ -3,20 +3,18 @@ include_once 'sql_connect.php';
 include_once 'sql_utils.php';
 
 function getUserHistory($userId) {
-    global $conn; 
-
     $sql = "SELECT * FROM stream 
-            INNER JOIN aflevering 
-                ON stream.AflID = aflevering.afleveringID 
-            INNER JOIN seizoen 
-                ON aflevering.SeizID = seizoen.SeizoenID 
-            INNER JOIN serie
-                ON seizoen.SerieID = serie.SerieID
-            WHERE stream.UserID = ? AND serie.actief = 1
-            ORDER BY serie.SerieID DESC";
+    INNER JOIN aflevering 
+    ON stream.AflID = aflevering.afleveringID 
+    INNER JOIN seizoen 
+    ON aflevering.SeizID = seizoen.SeizoenID 
+    INNER JOIN serie
+    ON seizoen.SerieID = serie.SerieID
+    WHERE KlantID = ? AND serie.actief = 1
+    ORDER BY serie.SerieID DESC LIMIT 10;";
 
     $params = [$userId];
-    $result = fetchSqlAll($sql, $params); 
+    $result = fetchSqlAll($sql, $params);
 
     return $result;
 }
