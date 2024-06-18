@@ -79,6 +79,7 @@ if(isset($_GET['serieid'])) {
         <div class="info-column">
             <div class="series-body">
                 <h2 class="series-title"><?php echo htmlspecialchars($seriesData); ?></h2>
+                <h3>Meer informatie over serie</h3>
                 <?php if ($imdbLink) : ?>
                     <p><a href="<?php echo htmlspecialchars($imdbLink); ?>" target="_blank">IMDb Page</a></p>
                 <?php else : ?>

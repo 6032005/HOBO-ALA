@@ -76,14 +76,7 @@ $series = $seriesManager->getAllSeries();
     <?php endif; ?>
 
     <table class="serie-table-content-manager">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Serie Title</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+     
         <tbody>
             <?php foreach ($series as $serie): ?>
                 <tr>

@@ -36,32 +36,26 @@ class User {
             return false;
         }
     }}
-// Example implementation of User class with series management
-// Define the SeriesManager class
-class SeriesManager {
-    private $conn; // Database connection object
 
-    // Constructor to initialize with database connection
+class SeriesManager {
+    private $conn; 
+
+
     public function __construct($conn) {
         $this->conn = $conn;
     }
 
-    // Method to fetch all series from the database
     public function getAllSeries() {
-        $query = "SELECT * FROM serie"; // Adjust SQL query as per your database schema
+        $query = "SELECT * FROM serie"; 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return all rows as associative array
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 
-    // Method to update series details
     public function updateSerie($update_data) {
-        // Implement update logic here
     }
 
-    // Method to delete a series
     public function deleteSerie($serie_id) {
-        // Implement delete logic here
     }
 }
 

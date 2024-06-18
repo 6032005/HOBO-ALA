@@ -49,6 +49,7 @@ if (isset($_POST['logout'])) {
             <a style="padding-right: 50px" href="email.php">Change Email</a>
             <a style="padding-right: 50px" href="password.php">Change Password</a>
             <a  style="padding-right: 50px" href="username.php">Change Username</a>
+            <a style="padding-right: 50px" href="history.php">History</a>
             
             <?php if ($contentManagerRole == 1): ?>
                 <a  style="padding-right: 50px" href="contentmanager.php">Manage Content</a>

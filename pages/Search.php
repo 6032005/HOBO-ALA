@@ -10,6 +10,17 @@ $head = [
     "scripts" => []
 ];
 include_once '../php/head.php';
+
+try {
+    $con = new PDO("mysql:host=localhost;dbname=HoBo", 'root', 'root');
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $genresStmt = $con->prepare("SELECT GenreID, GenreNaam FROM genre");
+    $genresStmt->execute();
+    $genres = $genresStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch(PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 ?>
 
 <body>
@@ -19,25 +30,42 @@ include_once '../php/head.php';
 <section class="search-body">
     <div class="search-container">
         <form id="searchForm" method="post">
-            <input type="text" class="search-box-search" name="search" id="searchInput" placeholder="search">
+            <input type="text" class="search-box-search" name="search" id="searchInput" placeholder="Search for series">
+            <select name="genre" id="genreSelect">
+                <option value="">Select Genre</option>
+                <?php
+                foreach ($genres as $genre) {
+                    echo '<option value="' . htmlspecialchars($genre['GenreID']) . '">' . htmlspecialchars($genre['GenreNaam']) . '</option>';
+                }
+                ?>
+            </select>
             <input type="submit" class="search-btn" name="submit" value="Search">
         </form>
     </div>
 
     <?php
-    try {
-        $con = new PDO("mysql:host=localhost;dbname=HoBo", 'root', 'root');
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
-    }
+    if (isset($_POST["submit"]) && (!empty($_POST["search"]) || !empty($_POST["genre"]))) {
+        $search = !empty($_POST["search"]) ? htmlspecialchars($_POST["search"]) : '';
+        $genre = !empty($_POST["genre"]) ? htmlspecialchars($_POST["genre"]) : '';
 
-    if (isset($_POST["submit"]) && !empty($_POST["search"])) {
-        $search = htmlspecialchars($_POST["search"]);
+        $sql = "SELECT s.* FROM serie s LEFT JOIN serie_genre sg ON s.SerieID = sg.SerieID WHERE s.actief = 1";
 
-        $stmt = $con->prepare("SELECT * FROM serie WHERE SerieTitel LIKE :search AND actief = 1");
+        if (!empty($search)) {
+            $sql .= " AND s.SerieTitel LIKE :search";
+        }
+        if (!empty($genre)) {
+            $sql .= " AND sg.GenreID = :genre";
+        }
 
-        $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+        $stmt = $con->prepare($sql);
+
+        if (!empty($search)) {
+            $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+        }
+        if (!empty($genre)) {
+            $stmt->bindValue(':genre', $genre, PDO::PARAM_INT);
+        }
+
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
@@ -66,8 +94,9 @@ include_once '../php/head.php';
 <script>
     document.getElementById('searchForm').addEventListener('submit', function(event) {
         var searchInput = document.getElementById('searchInput').value.trim();
-        if (searchInput === '') {
-            alert('Geen letters zijn ingevuld');
+        var genreSelect = document.getElementById('genreSelect').value.trim();
+        if (searchInput === '' && genreSelect === '') {
+            alert('Please enter a search term or select a genre');
             event.preventDefault(); 
         }
     });

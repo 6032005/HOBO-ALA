@@ -52,7 +52,6 @@ if (isset($_GET['delete_id'])) {
     exit();
 }
 
-// Fetch all users
 $users = $user->getAllUsers();
 ?>
 
@@ -84,7 +83,7 @@ $users = $user->getAllUsers();
         <table class="user-table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>GebruikersID</th>
                     <th>Username</th>
                     <th>Email</th>
                     <th>Admin</th>
