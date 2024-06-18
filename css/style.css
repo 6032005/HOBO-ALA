@@ -10,6 +10,7 @@ body {
   background: #444444;
   position: relative;
   display: flex;
+  flex-direction: column;
 }
 
 main {
@@ -18,14 +19,14 @@ main {
 }
 
 img {
-  height:70px;
+  height: 70px;
 }
 
 .navbar {
-  margin-top:25vh;
+  margin-top: 25vh;
   height: 50vh; 
   background: #92d051;
-  border-radius:25px;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,26 +62,26 @@ img {
   opacity: 0.9;
 }
 
-.title{
+.title {
   color: #fff;
   opacity: 0.9;
   padding-left: 4%;
   text-transform: capitalize;
   font-size: 22px;
   font-weight: 500;
-  font-family: Ne
+  font-family: Ne;
 }
 
-.movies-list{
+.movies-list {
   width: 100%;
   height: 220px;
   position: relative;
   margin: 10px 0 20px;
   border-top: 5px solid #92d051;
-margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
-.card-container{
+.card-container {
   position: relative;
   width: 92%;
   padding-left: 10px;
@@ -93,11 +94,11 @@ margin-bottom:20px;
   scroll-behavior: smooth;
 }
 
-.card-container::-webkit-scrollbar{
+.card-container::-webkit-scrollbar {
   display: none;
 }
 
-.card{
+.card {
   position: relative;
   min-width: 150px;
   width: 150px;
@@ -105,20 +106,20 @@ margin-bottom:20px;
   overflow: hidden;
   margin-right: 10px;
   transition: .5s;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.card-img{
+.card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.card:hover{
+.card:hover {
   transform: scale(1.1);
 }
 
-.card-body{ 
+.card-body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -132,7 +133,7 @@ margin-bottom:20px;
   transition: 0.5s;
 }
 
-.name{
+.name {
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -140,13 +141,12 @@ margin-bottom:20px;
   margin-top: 60%;
   text-shadow: 5px 5px 10px #000;
   text-align: end;
-  display:flex;
+  display: flex;
   justify-content: center;
-
 }
 
-.des{
-  color: bkack;
+.des {
+  color: black;
   opacity: 1;
   margin: 5px 0;
   font-weight: 500;
@@ -154,7 +154,7 @@ margin-bottom:20px;
 }
 
 .pre-btn,
-.nxt-btn{
+.nxt-btn {
   position: absolute;
   top: 0;
   width: 5%;
@@ -165,26 +165,23 @@ margin-bottom:20px;
   outline: none;
 }
 
-.pre-btn{
+.pre-btn {
   left: 0;
   background: linear-gradient(to right, #444444 0%, #444444);
 }
 
-.nxt-btn{
+.nxt-btn {
   right: 0;
   background: linear-gradient(to left, #444444 0%, #444444);
 }
 
 .pre-btn img,
-.nxt-btn img{
+.nxt-btn img {
   width: 15px;
   height: 20px;
 }
 
-
-
-
-.navbar-2{
+.navbar-2 {
   width: 100%;
   height: 80px;
   position: fixed;
@@ -196,6 +193,299 @@ margin-bottom:20px;
   display: flex;
   align-items: center;
 }
+
+.brand-logo-2 {
+  height: 70px;
+}
+
+.nav-links-2 {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+}
+
+.right-container {
+  display: block;
+  margin-left: auto;
+}
+
+.search-box {
+  border: none;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  background: transparent;
+  outline: none;
+  height: 30px;
+  color: #fff;
+  width: 500px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 500;
+  transition: .5s;
+  justify-content: center;
+  padding-left: 10px;
+}
+.search-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  margin: 0;
+  width: 100%;
+}
+
+.search-container {
+  display: flex;
+  padding: 100px;
+  margin: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.search-box-search {
+  border: none;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  background: transparent;
+  outline: none;
+  height: 45px;
+  color: #fff;
+  width: 500px;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 500;
+  transition: .5s;
+  padding-left: 10px;
+}
+
+.login-btn {
+  background: #5b9bd5;
+  text-decoration: none;
+  height: 30px;
+  padding: 0 20px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  margin: 0 10px;
+}
+
+.search_bar {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+}
+
+.recommend {
+  padding: 2px;
+  margin-left: 40px;
+  margin-right: 40px;
+  color: lightgreen;
+  font-size: 20px;
+}
+
+.card-container-2 {
+  position: absolute;
+  width: 80%;
+  top: calc(75%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.card-2 {
+  position: relative;
+  min-width: 150px;
+  width: 150px;
+  height: 200px;
+  overflow: hidden;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: .5s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-2:hover {
+  transform: scale(1.1);
+}
+
+.card-body-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 5px;
+  transition: 0.5s;
+}
+
+.name-2 {
+  position: absolute;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: capitalize;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  text-shadow: 5px 5px 10px #000;
+  text-align: center;
+}
+
+.search-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.video-container {
+  margin-bottom: 20px;
+}
+
+.video-player {
+  width: 100%;
+  margin-left: 50px;
+}
+
+.series-title {
+  font-size: 24px;
+  color: white;
+}
+
+.seasons-episodes {
+  margin-top: 20px;
+}
+
+.seasons-episodes-title {
+  font-size: 20px;
+  color: white;
+}
+
+.seasons-episodes-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.seasons-episodes-item {
+  margin-top: 15px;
+  font-size: 16px;
+  color: white;
+}
+
+.boxxed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  main {
+    width: 85%;
+  }
+
+  .card {
+    min-width: 130px;
+    width: 130px;
+  }
+
+  .card-2 {
+    min-width: 130px;
+    width: 130px;
+  }
+}
+
+@media (max-width: 992px) {
+  main {
+    width: 90%;
+  }
+
+  .navbar {
+    width: 20%;
+  }
+
+  .search-box,
+  .search-box-search {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 95%;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .card {
+    min-width: 110px;
+    width: 110px;
+  }
+
+  .card-2 {
+    min-width: 110px;
+    width: 110px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-2 {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .navbar-2 .nav-links-2 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-2 .brand-logo-2 {
+    margin-bottom: 10px;
+  }
+
+  .navbar-2 .search-box {
+    width: 80%;
+  }
+
+  .navbar-2 .right-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 
 .brand-logo-2{
   height: 70px;

@@ -71,24 +71,28 @@ $history = getUserHistory(10003);
         <div class="card-container">
 
         <?php
-if (!empty($history)) {
-    $latestWatched = $history[0]; 
-    $imgPath = getImgPathFromID($latestWatched["SerieID"]);
-    $SerieID = $latestWatched["SerieID"];
-    $SerieTitel = $latestWatched["SerieTitel"];
-    $AflTitel = $latestWatched["AflTitel"];
-?>
-    <div class="card">
-        <a href="serie.php?serieid=<?php echo $SerieID; ?>" class="serie-link">
-            <img src="<?php echo $imgPath; ?>" class="card-img" alt="<?php echo htmlspecialchars($SerieTitel) . ' titel'; ?>">
-            <div class="card-body">
-            </div>
-        </a>
-    </div>
-<?php
+$userHistory = getUserHistory($userId);
+
+if (!empty($userHistory)) {
+    foreach ($userHistory as $latestWatched) {
+        $imgPath = getImgPathFromID($latestWatched["SerieID"]);
+        $SerieID = $latestWatched["SerieID"];
+        $SerieTitel = $latestWatched["SerieTitel"];
+        $AflTitel = $latestWatched["AflTitel"];
+        ?>
+        <div class="card">
+            <a href="serie.php?serieid=<?php echo $SerieID; ?>" class="serie-link">
+                <img src="<?php echo $imgPath; ?>" class="card-img" alt="<?php echo htmlspecialchars($SerieTitel) . ' titel'; ?>">
+                <div class="card-body">
+                </div>
+            </a>
+        </div>
+        <?php
+    }
 } else {
     echo "No series watched yet.";
 }
+
 ?>
 
 

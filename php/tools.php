@@ -11,13 +11,17 @@ function getUserHistory($userId) {
     INNER JOIN serie
     ON seizoen.SerieID = serie.SerieID
     WHERE KlantID = ? AND serie.actief = 1
-    ORDER BY serie.SerieID DESC LIMIT 10;";
+    ORDER BY serie.SerieID;";
 
     $params = [$userId];
     $result = fetchSqlAll($sql, $params);
 
+
     return $result;
 }
+
+$userId = 10003; 
+$userHistory = getUserHistory($userId);
 
 function getImgPathFromID($id) {
     $len = strlen((string)$id);
