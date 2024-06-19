@@ -24,5 +24,4 @@ function fetchSqlAll($sql, $params = []) {
 }
 
 
-// utils.php
 

@@ -2,6 +2,8 @@
 include_once 'sql_connect.php';
 include_once 'sql_utils.php';
 
+
+
 function getUserHistory($userId) {
     $sql = "SELECT * FROM stream 
     INNER JOIN aflevering 
@@ -19,7 +21,7 @@ function getUserHistory($userId) {
 
     return $result;
 }
-
+$history = getUserHistory(10003); 
 $userId = 10003; 
 $userHistory = getUserHistory($userId);
 
