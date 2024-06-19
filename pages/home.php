@@ -64,7 +64,7 @@ $history = getUserHistory(10003);
         </div>
     </div>
 </section>
-<p class="recommend">Laatst</p>
+<p class="recommend">Laatst gekeken</p>
     <div class="movies-list">
         <button class="pre-btn"><img src="/img/pre.png" alt=""></button>
         <button class="nxt-btn"><img src="/img/nxt.png" alt=""></button>
