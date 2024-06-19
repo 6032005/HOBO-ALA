@@ -11560,8 +11560,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'admin', 'admin@mail.com', '$2y$12$t9QV73DL1Gj3Q9snUXWf7ebU.h/ePrsvQ9MsLrWqJMF6wkntj8hMq');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `contentmanager` , `admin`) VALUES
+(1, 'admin', 'admin@mail.com', '$2y$12$t9QV73DL1Gj3Q9snUXWf7ebU.h/ePrsvQ9MsLrWqJMF6wkntj8hMq' , '1' , '1');
 
 --
 -- Indexes for dumped tables
